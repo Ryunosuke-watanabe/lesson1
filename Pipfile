@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+selenium = "*"
+numpy = "*"
+pandas = "*"
+beautifulsoup4 = "*"
+requests = "*"
+lxml = "*"
+opencv-python = "*"
+psycopg2-binary = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
