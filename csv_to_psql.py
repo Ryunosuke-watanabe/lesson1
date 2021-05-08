@@ -4,12 +4,12 @@ from var import Var
 conn = psycopg2.connect(database=Var.dbname, user=Var.username, password=Var.password, host=Var.hostname, port=Var.port)
 cur = conn.cursor()
 # keywordのテーブルも作る
-target_sql_file = open('keyword.sql')
-sql_data = target_sql_file.read()
-target_sql_file.close()
+# target_sql_file = open('keyword.sql')
+# sql_data = target_sql_file.read()
+# target_sql_file.close()
 
-conn.commit()
-cur.execute(sql_data)
+# conn.commit()
+# cur.execute(sql_data)
 
 cur.execute(
     "DROP TABLE IF EXISTS img_rgb;"+
@@ -20,6 +20,19 @@ cur.execute(
         "green real," +
         "red real);"
     )
-with open('csv/total-concat.csv') as fp:
+with open('csv/ans/total-concat.csv') as fp:
     cur.copy_from(fp, table='img_rgb', sep=',', columns=['id','path', 'blue', 'green', 'red'])
+conn.commit()
+
+cur.execute(
+    "DROP TABLE IF EXISTS keyword;"+
+    "CREATE TABLE keyword (" +
+        "id bigint,"+
+        "keyword text," +
+        "blue real," +
+        "green real," +
+        "red real);"
+    )
+with open('csv/feel/total-concat.csv') as fp:
+    cur.copy_from(fp, table='keyword', sep=',', columns=['id','keyword', 'blue', 'green', 'red'])
 conn.commit()

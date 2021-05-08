@@ -12,6 +12,7 @@ requests = "*"
 lxml = "*"
 opencv-python = "*"
 psycopg2-binary = "*"
+jupyter = "*"
 
 [dev-packages]
 
